@@ -1,4 +1,4 @@
-import { Car, FileText, Passport, Shield, CarTaxi, ArrowRight } from 'lucide-react';
+import { Car, FileText, BookOpen, Shield, CarFront, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Features = () => {
@@ -16,7 +16,7 @@ const Features = () => {
       link: "/rto"
     },
     {
-      icon: Passport,
+      icon: BookOpen,
       title: "Passport",
       description: "Quick and efficient passport services",
       link: "/services"
@@ -28,7 +28,7 @@ const Features = () => {
       link: "/insurance"
     },
     {
-      icon: CarTaxi,
+      icon: CarFront,
       title: "Car Rentals",
       description: "Professional vehicle rental solutions",
       link: "/services"
