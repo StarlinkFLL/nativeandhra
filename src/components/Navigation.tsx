@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,13 +17,13 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Loans', href: '#loans' },
-    { name: 'RTO Works', href: '#rto' },
-    { name: 'Insurance', href: '#insurance' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Services', href: '/services' },
+    { name: 'Loans', href: '/loans' },
+    { name: 'RTO Works', href: '/rto' },
+    { name: 'Insurance', href: '/insurance' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
@@ -32,20 +34,26 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          <a href="#" className="text-2xl font-bold text-white">
+          <Link to="/" className="text-2xl font-bold text-white">
             Sumanth Associates
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             {navLinks.map((link) => (
-              <a key={link.name} href={link.href} className="nav-link">
+              <Link
+                key={link.name}
+                to={link.href}
+                className={`nav-link ${
+                  location.pathname === link.href ? 'text-primary-hover' : ''
+                }`}
+              >
                 {link.name}
-              </a>
+              </Link>
             ))}
-            <a href="#contact" className="hero-button ml-4">
+            <Link to="/contact" className="hero-button ml-4">
               Contact Now
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -62,22 +70,24 @@ const Navigation = () => {
           <div className="md:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-sm py-4">
             <div className="flex flex-col space-y-4 px-4">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
-                  href={link.href}
-                  className="text-white hover:text-primary-hover transition-colors"
+                  to={link.href}
+                  className={`text-white hover:text-primary-hover transition-colors ${
+                    location.pathname === link.href ? 'text-primary-hover' : ''
+                  }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 className="hero-button text-center"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Contact Now
-              </a>
+              </Link>
             </div>
           </div>
         )}
