@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Phone, Mail } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navigation = () => {
@@ -18,12 +18,11 @@ const Navigation = () => {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
+    { name: 'About Us', href: '/about' },
     { name: 'Services', href: '/services' },
-    { name: 'Loans', href: '/loans' },
-    { name: 'RTO Works', href: '/rto' },
-    { name: 'Insurance', href: '/insurance' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Licence', href: '/licence' },
+    { name: 'Registration', href: '/registration' },
+    { name: 'Contact Us', href: '/contact' },
   ];
 
   return (
@@ -33,9 +32,21 @@ const Navigation = () => {
       }`}
     >
       <div className="container mx-auto px-4">
+        {/* Top Bar with Contact Info */}
+        <div className="hidden md:flex justify-end items-center space-x-6 text-sm text-gray-300 mb-4">
+          <div className="flex items-center space-x-2">
+            <Phone className="w-4 h-4" />
+            <span>+91 8125888827, +91 9533112277</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Mail className="w-4 h-4" />
+            <span>idoonlineap@gmail.com</span>
+          </div>
+        </div>
+
         <div className="flex items-center justify-between">
           <Link to="/" className="text-2xl font-bold text-white">
-            Sumanth Associates
+            Native Andhra
           </Link>
 
           {/* Desktop Navigation */}
@@ -52,7 +63,7 @@ const Navigation = () => {
               </Link>
             ))}
             <Link to="/contact" className="hero-button ml-4">
-              Contact Now
+              Call Us Now
             </Link>
           </div>
 
@@ -86,7 +97,7 @@ const Navigation = () => {
                 className="hero-button text-center"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Contact Now
+                Call Us Now
               </Link>
             </div>
           </div>
