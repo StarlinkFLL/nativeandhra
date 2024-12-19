@@ -6,31 +6,31 @@ const Features = () => {
     {
       icon: <Car className="w-12 h-12 text-primary" />,
       title: "Car Loans",
-      description: "Get the best car loan rates with easy documentation and quick approval process.",
+      description: "Get up to 100% finance for used cars with hassle-free processing, minimal documentation and instant disbursal.",
       link: "/loans"
     },
     {
       icon: <FileText className="w-12 h-12 text-primary" />,
       title: "PAN Card & RTO Works",
-      description: "Professional assistance with PAN card applications and RTO-related services.",
+      description: "Complete assistance for driving license, vehicle registration, and PAN card services with professional support.",
       link: "/rto"
     },
     {
       icon: <BookOpen className="w-12 h-12 text-primary" />,
       title: "Passport Services",
-      description: "Streamlined passport application and renewal services.",
+      description: "Streamlined passport application and renewal services with quick processing and expert guidance.",
       link: "/services"
     },
     {
       icon: <Shield className="w-12 h-12 text-primary" />,
       title: "Insurance",
-      description: "Comprehensive insurance solutions for vehicles and more.",
+      description: "Comprehensive insurance solutions including vehicle, life, and health insurance with excellent coverage.",
       link: "/insurance"
     },
     {
       icon: <CarFront className="w-12 h-12 text-primary" />,
       title: "Car Rentals",
-      description: "Wide range of vehicles available for rent at competitive prices.",
+      description: "Wide range of vehicles available from top brands including Hyundai, Suzuki, Mahindra, and more.",
       link: "/services"
     }
   ];
