@@ -1,83 +1,74 @@
-import { Building, Users, Clock } from 'lucide-react';
+import { Building, Users, Car, CheckCircle } from 'lucide-react';
 
 const About = () => {
   const stats = [
-    {
-      icon: Building,
-      number: "1000+",
-      label: "Insurance Completed"
-    },
-    {
-      icon: Users,
-      number: "1840+",
-      label: "Happy Clients"
-    },
-    {
-      icon: Clock,
-      number: "100+",
-      label: "Car Loans Approved"
-    }
-  ];
-
-  const achievements = [
-    "10+ years of experience in financial services",
-    "Comprehensive documentation assistance",
-    "Quick loan approvals within 24-48 hours",
-    "Professional expertise in RTO works",
-    "Dedicated customer support team",
-    "Pan Andhra Pradesh coverage"
+    { number: "1000+", label: "Insurance Completed", icon: <CheckCircle className="w-8 h-8 text-primary mb-2" /> },
+    { number: "1840+", label: "Happy Clients", icon: <Users className="w-8 h-8 text-primary mb-2" /> },
+    { number: "100+", label: "Car Loans Approved", icon: <Car className="w-8 h-8 text-primary mb-2" /> },
+    { number: "423+", label: "Total Loans Approved", icon: <Building className="w-8 h-8 text-primary mb-2" /> }
   ];
 
   return (
-    <section className="py-20 bg-card">
+    <section className="py-20 bg-muted">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-            About <span className="text-primary-hover">Native Andhra</span>
-          </h2>
-          
-          <div className="mb-12 text-muted-foreground">
-            <p className="mb-4">
-              Welcome to Native Andhra, your trusted partner for comprehensive financial and documentation services across Andhra Pradesh. With over a decade of experience, we've established ourselves as a leading service provider in Visakhapatnam and surrounding regions.
-            </p>
-            <p className="mb-4">
-              We specialize in a wide range of services including Car Loans, RTO Works, PAN Card services, Home Loans, Business Loans, Personal Loans, Mortgage Loans, and Passport assistance. Our commitment to excellence and customer satisfaction has made us the preferred choice for thousands of clients.
-            </p>
-          </div>
+        <h2 className="text-3xl font-bold text-center mb-8">About Native Andhra</h2>
+        
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <p className="text-lg mb-6">
+            We provide comprehensive financial and documentation services including loans, RTO works, and essential documentation assistance. Our commitment to excellence and customer satisfaction has made us a trusted name in Visakhapatnam.
+          </p>
+          <p className="text-muted-foreground">
+            Located at D-No 46-13-35/1, 1st Floor, Sri Dwarapu Venkata Ramana Nilayam, Dondaparthy, Near Diamond Park, Visakhapatnam, we serve clients across Andhra Pradesh with professional expertise and dedication.
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {stats.map((stat, index) => (
-              <div 
-                key={index}
-                className="p-6 rounded-lg bg-black/50 animate-fade-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <stat.icon className="w-8 h-8 text-primary-hover mx-auto mb-4" />
-                <div className="text-3xl font-bold text-primary-hover mb-2">{stat.number}</div>
-                <div className="text-muted-foreground text-center">{stat.label}</div>
-              </div>
-            ))}
-          </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+          {stats.map((stat, index) => (
+            <div key={index} className="text-center p-6 bg-card rounded-lg hover:scale-105 transition-transform duration-300">
+              {stat.icon}
+              <h3 className="text-2xl font-bold mb-2">{stat.number}</h3>
+              <p className="text-muted-foreground">{stat.label}</p>
+            </div>
+          ))}
+        </div>
 
-          <div className="bg-black/30 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold mb-4 text-primary-hover">Why Choose Us?</h3>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {achievements.map((achievement, index) => (
-                <li key={index} className="flex items-center text-muted-foreground">
-                  <span className="w-2 h-2 bg-primary-hover rounded-full mr-2"></span>
-                  {achievement}
-                </li>
-              ))}
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="bg-card p-6 rounded-lg">
+            <h3 className="text-xl font-semibold mb-4">Our Services</h3>
+            <ul className="space-y-2">
+              <li>• Car & Vehicle Loans</li>
+              <li>• RTO Works & Documentation</li>
+              <li>• PAN Card Assistance</li>
+              <li>• Home & Business Loans</li>
+              <li>• Personal & Mortgage Loans</li>
+              <li>• Passport Assistance</li>
+              <li>• Insurance Services</li>
+              <li>• Car Rentals</li>
             </ul>
           </div>
+          
+          <div className="bg-card p-6 rounded-lg">
+            <h3 className="text-xl font-semibold mb-4">Why Choose Us</h3>
+            <ul className="space-y-2">
+              <li>• Professional expertise in all services</li>
+              <li>• Quick processing and approval</li>
+              <li>• Minimal documentation required</li>
+              <li>• Competitive interest rates</li>
+              <li>• Dedicated customer support</li>
+              <li>• Transparent processes</li>
+              <li>• Years of trusted service</li>
+              <li>• Comprehensive solutions</li>
+            </ul>
+          </div>
+        </div>
 
-          <div className="mt-12 text-center text-muted-foreground">
-            <p className="font-semibold">Our Address:</p>
-            <p className="mt-2">
-              D-No - 46-13-35/1, 1st Floor, Sri Dwarapu Venkata Ramana Nilayam,<br />
-              Dondaparthy, Near Diamond Park, Ward - 15 Village,<br />
-              Visakhapatnam (U) Mandal, Visakhapatnam District,<br />
-              Pincode - 530016
+        <div className="text-center mt-12">
+          <h3 className="text-2xl font-semibold mb-4">Contact Us</h3>
+          <div className="space-y-2">
+            <p>Phone: +91 81258 88827 / +91 95331 12277</p>
+            <p>Email: idoonlineap@gmail.com</p>
+            <p className="text-muted-foreground">
+              We're here to assist you with all your financial and documentation needs.
             </p>
           </div>
         </div>
