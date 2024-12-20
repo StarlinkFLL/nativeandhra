@@ -1,19 +1,52 @@
 import Navigation from "@/components/Navigation";
 import { motion } from "framer-motion";
-import { Check, Car, Clock, Shield, FileText, AlertCircle, Clipboard, ArrowRight } from "lucide-react";
+import { Check, Car, Clock, Shield, FileText, AlertCircle, Clipboard, ArrowRight, Globe, UserCheck, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const DrivingLicence = () => {
   const navigate = useNavigate();
 
-  const services = [
-    { title: "Learning License", icon: <Car className="w-6 h-6" />, desc: "Get your learning license quickly" },
-    { title: "Permanent License", icon: <Shield className="w-6 h-6" />, desc: "Convert learning license to permanent" },
-    { title: "License Renewal", icon: <Clock className="w-6 h-6" />, desc: "Renew your existing license" },
-    { title: "Duplicate License", icon: <FileText className="w-6 h-6" />, desc: "Get duplicate license if lost" },
-    { title: "International License", icon: <Clipboard className="w-6 h-6" />, desc: "Apply for international driving permit" },
-    { title: "Address Change", icon: <FileText className="w-6 h-6" />, desc: "Update your license address" }
+  const licenseServices = [
+    {
+      title: "Driving License Services",
+      items: [
+        "Fresh Driving License",
+        "Duplicate License",
+        "International Driving Permit",
+        "License Renewal",
+        "Address Change",
+        "Vehicle Category Addition"
+      ]
+    },
+    {
+      title: "Learning License Services",
+      items: [
+        "Fresh Learning License",
+        "LLR Correction",
+        "LLR Cancellation",
+        "DL/LLR Slot Booking",
+        "Slot Availability Check",
+        "Learning License Renewal"
+      ]
+    },
+    {
+      title: "Additional Services",
+      items: [
+        "Conductor License",
+        "Temporary Permit",
+        "Aadhaar Seeding",
+        "Voluntary Tax Payment",
+        "International License Processing",
+        "Vehicle Related Slot Booking"
+      ]
+    }
   ];
 
   const containerVariants = {
@@ -40,7 +73,6 @@ const DrivingLicence = () => {
         animate={{ opacity: 1 }}
         className="pt-24 container mx-auto px-4 pb-16"
       >
-        {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -52,14 +84,20 @@ const DrivingLicence = () => {
           </p>
         </motion.div>
 
-        {/* Services Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
         >
-          {services.map((service, index) => (
+          {[
+            { icon: <Car className="w-6 h-6" />, title: "Fresh License", desc: "Get your new driving license quickly" },
+            { icon: <Globe className="w-6 h-6" />, title: "International Permit", desc: "International driving permit services" },
+            { icon: <UserCheck className="w-6 h-6" />, title: "License Renewal", desc: "Quick license renewal process" },
+            { icon: <Calendar className="w-6 h-6" />, title: "Slot Booking", desc: "Easy slot booking services" },
+            { icon: <FileText className="w-6 h-6" />, title: "Documentation", desc: "Complete documentation support" },
+            { icon: <Shield className="w-6 h-6" />, title: "Verification", desc: "Thorough verification services" }
+          ].map((service, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
@@ -73,72 +111,35 @@ const DrivingLicence = () => {
           ))}
         </motion.div>
 
-        {/* Process Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-16"
         >
-          <h2 className="text-3xl font-bold text-center mb-12">Application Process</h2>
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              { step: "1", title: "Document Collection", desc: "Gather required documents" },
-              { step: "2", title: "Application", desc: "Submit application form" },
-              { step: "3", title: "Test Booking", desc: "Schedule your test" },
-              { step: "4", title: "License Issue", desc: "Get your license" }
-            ].map((step, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ y: -5 }}
-                className="relative text-center"
-              >
-                <div className="bg-primary/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold">{step.step}</span>
-                </div>
-                <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
-                <p className="text-gray-400">{step.desc}</p>
-                {index < 3 && (
-                  <ArrowRight className="hidden md:block absolute top-8 -right-4 text-primary" />
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Requirements Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-16"
-        >
-          <h2 className="text-3xl font-bold text-center mb-8">Required Documents</h2>
-          <div className="max-w-3xl mx-auto bg-card p-8 rounded-lg">
-            <ul className="space-y-4">
-              {[
-                "Age Proof (18 years and above)",
-                "Address Proof",
-                "Identity Proof",
-                "Medical Certificate (Form 1A)",
-                "Passport Size Photographs",
-                "Previous License (for renewal)",
-                "Form 1 for Learning License"
-              ].map((doc, index) => (
-                <motion.li
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex items-center gap-3"
-                >
-                  <Check className="text-primary" />
-                  <span>{doc}</span>
-                </motion.li>
+          <h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>
+          <div className="max-w-4xl mx-auto">
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              {licenseServices.map((category, index) => (
+                <AccordionItem key={index} value={`item-${index}`} className="bg-card rounded-lg border border-border px-6">
+                  <AccordionTrigger className="text-xl font-semibold py-4">
+                    {category.title}
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-4">
+                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {category.items.map((item, idx) => (
+                        <li key={idx} className="flex items-center gap-2">
+                          <Check className="text-primary w-4 h-4" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
               ))}
-            </ul>
+            </Accordion>
           </div>
         </motion.div>
 
-        {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -149,7 +150,7 @@ const DrivingLicence = () => {
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button
               size="lg"
-              className="bg-primary hover:bg-primary-hover text-white"
+              className="bg-primary hover:bg-primary/90 text-white"
               onClick={() => navigate("/contact")}
             >
               Contact Us

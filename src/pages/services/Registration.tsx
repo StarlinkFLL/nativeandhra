@@ -1,19 +1,61 @@
 import Navigation from "@/components/Navigation";
 import { motion } from "framer-motion";
-import { Check, FileText, Clock, Shield, AlertCircle, Car, Clipboard, ArrowRight } from "lucide-react";
+import { Check, FileText, Clock, Shield, AlertCircle, Car, Clipboard, ArrowRight, Building2, FileKey2, FileSearch } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const Registration = () => {
   const navigate = useNavigate();
 
-  const services = [
-    { title: "New Vehicle Registration", icon: <Car className="w-6 h-6" />, desc: "Complete registration process for new vehicles" },
-    { title: "Ownership Transfer", icon: <FileText className="w-6 h-6" />, desc: "Hassle-free ownership transfer services" },
-    { title: "RC Renewal", icon: <Clock className="w-6 h-6" />, desc: "Quick RC renewal process" },
-    { title: "NOC Services", icon: <Shield className="w-6 h-6" />, desc: "Efficient NOC processing" },
-    { title: "Address Change", icon: <Clipboard className="w-6 h-6" />, desc: "Update your vehicle registration address" },
-    { title: "Duplicate RC", icon: <FileText className="w-6 h-6" />, desc: "Get duplicate registration certificate" }
+  const registrationServices = [
+    {
+      title: "Vehicle Registration",
+      items: [
+        "Alteration of Vehicle",
+        "Cancellation of RC",
+        "Duplicate Registration",
+        "Hire Purchase Termination",
+        "Other State Registration",
+        "Registration Renewal",
+        "Theft Revocation",
+        "Vehicle Stoppage"
+      ]
+    },
+    {
+      title: "Documentation Services",
+      items: [
+        "Cancellation of NOC",
+        "Change of Address",
+        "Hire Purchase Agreement",
+        "Issue of NOC",
+        "Reassignment of Vehicles",
+        "Theft Intimation",
+        "Transfer of Ownership",
+        "Vehicle Stoppage Revocation"
+      ]
+    },
+    {
+      title: "Permit Services",
+      items: [
+        "Bilateral Tax",
+        "Extension Of Validity",
+        "Permit Data Entry",
+        "Renewal Of Permit",
+        "Surrender Of Permit",
+        "Variation Of Permit",
+        "COA for Permit",
+        "New Permit",
+        "Renewal Of Auth Card",
+        "Replacement Of Vehicle",
+        "Transfer of Permit"
+      ]
+    }
   ];
 
   const containerVariants = {
@@ -40,26 +82,31 @@ const Registration = () => {
         animate={{ opacity: 1 }}
         className="pt-24 container mx-auto px-4 pb-16"
       >
-        {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Vehicle Registration Services</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">Registration Services</h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Professional assistance for all your vehicle registration needs with quick processing and complete documentation support
+            Complete assistance for all vehicle registration and documentation services with professional expertise
           </p>
         </motion.div>
 
-        {/* Services Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
         >
-          {services.map((service, index) => (
+          {[
+            { icon: <Car className="w-6 h-6" />, title: "Vehicle Registration", desc: "Complete registration process for all types of vehicles" },
+            { icon: <FileText className="w-6 h-6" />, title: "Documentation", desc: "Comprehensive documentation services" },
+            { icon: <Shield className="w-6 h-6" />, title: "Permit Services", desc: "All types of permit-related services" },
+            { icon: <Building2 className="w-6 h-6" />, title: "State Transfer", desc: "Inter-state vehicle transfer services" },
+            { icon: <FileKey2 className="w-6 h-6" />, title: "NOC Services", desc: "Quick NOC processing and documentation" },
+            { icon: <FileSearch className="w-6 h-6" />, title: "Verification", desc: "Complete vehicle verification services" }
+          ].map((service, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
@@ -73,71 +120,35 @@ const Registration = () => {
           ))}
         </motion.div>
 
-        {/* Process Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-16"
         >
-          <h2 className="text-3xl font-bold text-center mb-12">Our Process</h2>
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              { step: "1", title: "Document Submission", desc: "Submit required documents" },
-              { step: "2", title: "Verification", desc: "Document verification process" },
-              { step: "3", title: "Processing", desc: "Application processing" },
-              { step: "4", title: "Completion", desc: "Registration completion" }
-            ].map((step, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ y: -5 }}
-                className="relative text-center"
-              >
-                <div className="bg-primary/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold">{step.step}</span>
-                </div>
-                <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
-                <p className="text-gray-400">{step.desc}</p>
-                {index < 3 && (
-                  <ArrowRight className="hidden md:block absolute top-8 -right-4 text-primary" />
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Requirements Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-16"
-        >
-          <h2 className="text-3xl font-bold text-center mb-8">Required Documents</h2>
-          <div className="max-w-3xl mx-auto bg-card p-8 rounded-lg">
-            <ul className="space-y-4">
-              {[
-                "Valid ID Proof",
-                "Address Proof",
-                "Insurance Certificate",
-                "Sale Certificate/Invoice",
-                "PUC Certificate",
-                "Passport Size Photos"
-              ].map((doc, index) => (
-                <motion.li
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex items-center gap-3"
-                >
-                  <Check className="text-primary" />
-                  <span>{doc}</span>
-                </motion.li>
+          <h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>
+          <div className="max-w-4xl mx-auto">
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              {registrationServices.map((category, index) => (
+                <AccordionItem key={index} value={`item-${index}`} className="bg-card rounded-lg border border-border px-6">
+                  <AccordionTrigger className="text-xl font-semibold py-4">
+                    {category.title}
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-4">
+                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {category.items.map((item, idx) => (
+                        <li key={idx} className="flex items-center gap-2">
+                          <Check className="text-primary w-4 h-4" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
               ))}
-            </ul>
+            </Accordion>
           </div>
         </motion.div>
 
-        {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -148,7 +159,7 @@ const Registration = () => {
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button
               size="lg"
-              className="bg-primary hover:bg-primary-hover text-white"
+              className="bg-primary hover:bg-primary/90 text-white"
               onClick={() => navigate("/contact")}
             >
               Contact Us
