@@ -75,63 +75,10 @@ export default {
             transform: "translateY(0)",
           },
         },
-        "slide-in-right": {
-          "0%": {
-            transform: "translateX(100%)",
-            opacity: "0",
-          },
-          "100%": {
-            transform: "translateX(0)",
-            opacity: "1",
-          },
-        },
-        "slide-in-left": {
-          "0%": {
-            transform: "translateX(-100%)",
-            opacity: "0",
-          },
-          "100%": {
-            transform: "translateX(0)",
-            opacity: "1",
-          },
-        },
-        "zoom-in": {
-          "0%": {
-            transform: "scale(0.95)",
-            opacity: "0",
-          },
-          "100%": {
-            transform: "scale(1)",
-            opacity: "1",
-          },
-        },
-        float: {
-          "0%, 100%": {
-            transform: "translateY(0)",
-          },
-          "50%": {
-            transform: "translateY(-20px)",
-          },
-        },
-        "bounce-subtle": {
-          "0%, 100%": {
-            transform: "translateY(-5%)",
-            "animation-timing-function": "cubic-bezier(0.8, 0, 1, 1)",
-          },
-          "50%": {
-            transform: "translateY(0)",
-            "animation-timing-function": "cubic-bezier(0, 0, 0.2, 1)",
-          },
-        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
         "fade-down": "fade-down 0.5s ease-out",
-        "slide-in-right": "slide-in-right 0.5s ease-out",
-        "slide-in-left": "slide-in-left 0.5s ease-out",
-        "zoom-in": "zoom-in 0.5s ease-out",
-        "float": "float 6s ease-in-out infinite",
-        "bounce-subtle": "bounce-subtle 3s infinite",
       },
     },
   },
