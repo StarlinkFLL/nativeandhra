@@ -1,4 +1,5 @@
 import { Star, User } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Reviews = () => {
   const reviews = [
@@ -22,35 +23,75 @@ const Reviews = () => {
     }
   ];
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  };
+
   return (
-    <section className="py-20 bg-black">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">
+    <section className="py-20 bg-gradient-to-b from-black via-background to-black">
+      <motion.div 
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={container}
+        className="container mx-auto px-4"
+      >
+        <motion.h2 
+          variants={item}
+          className="text-4xl font-bold text-center mb-12"
+        >
           What Our <span className="text-primary">Clients Say</span>
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        </motion.h2>
+        
+        <motion.div 
+          variants={container}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
           {reviews.map((review, index) => (
-            <div 
+            <motion.div 
               key={index}
-              className="bg-card p-6 rounded-lg hover:scale-105 transition-transform duration-300"
+              variants={item}
+              whileHover={{ scale: 1.05 }}
+              className="bg-card p-6 rounded-lg border border-border hover:border-primary/50 transition-all duration-300"
             >
               <div className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4">
+                <motion.div 
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4"
+                >
                   <User className="w-8 h-8 text-primary" />
-                </div>
+                </motion.div>
                 <div className="flex mb-4">
                   {[...Array(review.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: i * 0.1 }}
+                    >
+                      <Star className="w-5 h-5 text-yellow-500 fill-current" />
+                    </motion.div>
                   ))}
                 </div>
                 <p className="text-muted-foreground mb-4">"{review.comment}"</p>
                 <h4 className="font-semibold">{review.name}</h4>
                 <p className="text-sm text-muted-foreground">{review.role}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

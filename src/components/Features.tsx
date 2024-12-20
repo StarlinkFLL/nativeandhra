@@ -1,5 +1,6 @@
 import { Car, FileText, BookOpen, Shield, CarFront, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Features = () => {
   const features = [
@@ -35,34 +36,76 @@ const Features = () => {
     }
   ];
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  };
+
   return (
-    <section className="py-20 bg-muted">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-4">Our Services</h2>
-        <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
+    <section className="py-20 bg-gradient-to-b from-background via-muted to-background">
+      <motion.div 
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={container}
+        className="container mx-auto px-4"
+      >
+        <motion.h2 
+          variants={item}
+          className="text-4xl font-bold text-center mb-4"
+        >
+          Our <span className="text-primary">Services</span>
+        </motion.h2>
+        
+        <motion.p 
+          variants={item}
+          className="text-muted-foreground text-center max-w-2xl mx-auto mb-12"
+        >
           We offer comprehensive financial and documentation services tailored to meet your specific needs. Our experienced team ensures smooth processing and quick turnaround times with professional expertise.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        </motion.p>
+        
+        <motion.div 
+          variants={container}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {features.map((feature, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-card p-6 rounded-lg hover:scale-105 transition-transform duration-300"
+              variants={item}
+              whileHover={{ scale: 1.02, y: -5 }}
+              className="bg-card p-6 rounded-lg border border-border hover:border-primary/50 transition-all duration-300"
             >
               <div className="flex flex-col items-center text-center">
-                {feature.icon}
+                <motion.div
+                  whileHover={{ rotate: 5, scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  {feature.icon}
+                </motion.div>
                 <h3 className="text-xl font-semibold mt-4 mb-2">{feature.title}</h3>
                 <p className="text-muted-foreground mb-4">{feature.description}</p>
                 <Link
                   to={feature.link}
-                  className="inline-flex items-center text-primary hover:text-primary/80"
+                  className="inline-flex items-center text-primary hover:text-primary/80 group"
                 >
-                  Learn More <ArrowRight className="ml-2 w-4 h-4" />
+                  Learn More 
+                  <ArrowRight className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
