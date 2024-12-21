@@ -18,6 +18,12 @@ import MortgageLoans from "./pages/services/MortgageLoans";
 import Registration from "./pages/services/Registration";
 import DrivingLicence from "./pages/services/DrivingLicence";
 import CarRentals from "./pages/services/CarRentals";
+import FreshLicence from "./pages/services/licence/FreshLicence";
+import LicenceRenewal from "./pages/services/licence/LicenceRenewal";
+import InternationalPermit from "./pages/services/licence/InternationalPermit";
+import SlotBooking from "./pages/services/licence/SlotBooking";
+import Documentation from "./pages/services/licence/Documentation";
+import Verification from "./pages/services/licence/Verification";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +49,12 @@ const App = () => (
           <Route path="/services/registration" element={<Registration />} />
           <Route path="/services/driving-licence" element={<DrivingLicence />} />
           <Route path="/services/car-rentals" element={<CarRentals />} />
+          <Route path="/services/driving-licence/fresh" element={<FreshLicence />} />
+          <Route path="/services/driving-licence/renewal" element={<LicenceRenewal />} />
+          <Route path="/services/driving-licence/international" element={<InternationalPermit />} />
+          <Route path="/services/driving-licence/slot-booking" element={<SlotBooking />} />
+          <Route path="/services/driving-licence/documentation" element={<Documentation />} />
+          <Route path="/services/driving-licence/verification" element={<Verification />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
