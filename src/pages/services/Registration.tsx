@@ -1,6 +1,6 @@
 import Navigation from "@/components/Navigation";
 import { motion } from "framer-motion";
-import { Check, Clock, Shield, AlertCircle, Car, Clipboard, ArrowRight, Building2, FileKey2, FileSearch } from "lucide-react";
+import { Check, FileText, Clock, Shield, AlertCircle, Car, Clipboard, ArrowRight, Building2, FileKey2, FileSearch } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate, Link } from "react-router-dom";
 import {
@@ -34,6 +34,21 @@ const Registration = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navigation />
@@ -55,48 +70,72 @@ const Registration = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="max-w-4xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
         >
-          <Accordion type="single" collapsible className="w-full space-y-4">
-            {registrationServices.map((category, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="bg-card rounded-lg border border-border px-6">
-                <AccordionTrigger className="text-xl font-semibold py-4">
-                  {category.title}
-                </AccordionTrigger>
-                <AccordionContent className="pb-4">
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {category.items.map((item, idx) => (
-                      <li key={idx} className="flex items-center justify-between p-2 hover:bg-primary/10 rounded-lg transition-colors">
-                        <div className="flex items-center gap-2">
-                          <Check className="text-primary w-4 h-4" />
-                          <span>{item.name}</span>
-                        </div>
-                        <Link 
-                          to={item.link}
-                          className="flex items-center text-primary hover:text-primary/80 transition-colors"
-                        >
-                          Learn More
-                          <ArrowRight className="ml-1 w-4 h-4" />
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          {[
+            { icon: <Car className="w-6 h-6" />, title: "Vehicle Registration", desc: "Complete registration process for all types of vehicles", link: "/services/registration/vehicle" },
+            { icon: <FileText className="w-6 h-6" />, title: "Transfer of Ownership", desc: "Comprehensive ownership transfer services", link: "/services/registration/transfer" },
+            { icon: <Shield className="w-6 h-6" />, title: "RC Renewal", desc: "Quick and efficient RC renewal process", link: "/services/registration/renewal" },
+            { icon: <Building2 className="w-6 h-6" />, title: "NOC Services", desc: "Hassle-free NOC processing", link: "/services/registration/noc" },
+            { icon: <FileKey2 className="w-6 h-6" />, title: "Documentation", desc: "Complete documentation assistance", link: "/services/registration/vehicle" },
+            { icon: <FileSearch className="w-6 h-6" />, title: "Verification", desc: "Thorough verification services", link: "/services/registration/vehicle" }
+          ].map((service, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+              className="bg-card p-6 rounded-lg border border-border hover:border-primary/50 transition-all duration-300"
+            >
+              <div className="text-primary mb-4">{service.icon}</div>
+              <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+              <p className="text-gray-400 mb-4">{service.desc}</p>
+              <Link to={service.link} className="inline-flex items-center text-primary hover:text-primary/80">
+                Learn More <ArrowRight className="ml-2 w-4 h-4" />
+              </Link>
+            </motion.div>
+          ))}
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="text-center mt-12"
+          className="mb-16"
         >
-          <h2 className="text-3xl font-bold mb-6">Need Assistance?</h2>
+          <h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>
+          <div className="max-w-4xl mx-auto">
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              {registrationServices.map((category, index) => (
+                <AccordionItem key={index} value={`item-${index}`} className="bg-card rounded-lg border border-border px-6">
+                  <AccordionTrigger className="text-xl font-semibold py-4">
+                    {category.title}
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-4">
+                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {category.items.map((item, idx) => (
+                        <li key={idx} className="flex items-center gap-2">
+                          <Check className="text-primary w-4 h-4" />
+                          <Link to={item.link} className="hover:text-primary transition-colors">
+                            {item.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="text-center"
+        >
+          <h2 className="text-3xl font-bold mb-6">Ready to Get Started?</h2>
           <p className="text-gray-300 mb-8">Contact us now for quick and efficient registration services</p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button
