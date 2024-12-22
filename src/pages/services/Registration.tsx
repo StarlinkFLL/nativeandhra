@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import { motion } from "framer-motion";
 import { Check, FileText, Clock, Shield, AlertCircle, Car, Clipboard, ArrowRight, Building2, FileKey2, FileSearch } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Accordion,
   AccordionContent,
@@ -17,19 +17,43 @@ const Registration = () => {
     {
       title: "Vehicle Registration",
       items: [
-        { name: "New Vehicle Registration", link: "/services/registration/vehicle" },
-        { name: "Transfer of Ownership", link: "/services/registration/transfer" },
-        { name: "RC Renewal", link: "/services/registration/renewal" },
-        { name: "NOC Services", link: "/services/registration/noc" }
+        "Alteration of Vehicle",
+        "Cancellation of RC",
+        "Duplicate Registration",
+        "Hire Purchase Termination",
+        "Other State Registration",
+        "Registration Renewal",
+        "Theft Revocation",
+        "Vehicle Stoppage"
       ]
     },
     {
       title: "Documentation Services",
       items: [
-        { name: "Address Change", link: "/services/registration/vehicle" },
-        { name: "Duplicate RC", link: "/services/registration/vehicle" },
-        { name: "HP Addition/Termination", link: "/services/registration/vehicle" },
-        { name: "Other State Transfer", link: "/services/registration/transfer" }
+        "Cancellation of NOC",
+        "Change of Address",
+        "Hire Purchase Agreement",
+        "Issue of NOC",
+        "Reassignment of Vehicles",
+        "Theft Intimation",
+        "Transfer of Ownership",
+        "Vehicle Stoppage Revocation"
+      ]
+    },
+    {
+      title: "Permit Services",
+      items: [
+        "Bilateral Tax",
+        "Extension Of Validity",
+        "Permit Data Entry",
+        "Renewal Of Permit",
+        "Surrender Of Permit",
+        "Variation Of Permit",
+        "COA for Permit",
+        "New Permit",
+        "Renewal Of Auth Card",
+        "Replacement Of Vehicle",
+        "Transfer of Permit"
       ]
     }
   ];
@@ -76,12 +100,12 @@ const Registration = () => {
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
         >
           {[
-            { icon: <Car className="w-6 h-6" />, title: "Vehicle Registration", desc: "Complete registration process for all types of vehicles", link: "/services/registration/vehicle" },
-            { icon: <FileText className="w-6 h-6" />, title: "Transfer of Ownership", desc: "Comprehensive ownership transfer services", link: "/services/registration/transfer" },
-            { icon: <Shield className="w-6 h-6" />, title: "RC Renewal", desc: "Quick and efficient RC renewal process", link: "/services/registration/renewal" },
-            { icon: <Building2 className="w-6 h-6" />, title: "NOC Services", desc: "Hassle-free NOC processing", link: "/services/registration/noc" },
-            { icon: <FileKey2 className="w-6 h-6" />, title: "Documentation", desc: "Complete documentation assistance", link: "/services/registration/vehicle" },
-            { icon: <FileSearch className="w-6 h-6" />, title: "Verification", desc: "Thorough verification services", link: "/services/registration/vehicle" }
+            { icon: <Car className="w-6 h-6" />, title: "Vehicle Registration", desc: "Complete registration process for all types of vehicles" },
+            { icon: <FileText className="w-6 h-6" />, title: "Documentation", desc: "Comprehensive documentation services" },
+            { icon: <Shield className="w-6 h-6" />, title: "Permit Services", desc: "All types of permit-related services" },
+            { icon: <Building2 className="w-6 h-6" />, title: "State Transfer", desc: "Inter-state vehicle transfer services" },
+            { icon: <FileKey2 className="w-6 h-6" />, title: "NOC Services", desc: "Quick NOC processing and documentation" },
+            { icon: <FileSearch className="w-6 h-6" />, title: "Verification", desc: "Complete vehicle verification services" }
           ].map((service, index) => (
             <motion.div
               key={index}
@@ -91,10 +115,7 @@ const Registration = () => {
             >
               <div className="text-primary mb-4">{service.icon}</div>
               <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-              <p className="text-gray-400 mb-4">{service.desc}</p>
-              <Link to={service.link} className="inline-flex items-center text-primary hover:text-primary/80">
-                Learn More <ArrowRight className="ml-2 w-4 h-4" />
-              </Link>
+              <p className="text-gray-400">{service.desc}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -117,9 +138,7 @@ const Registration = () => {
                       {category.items.map((item, idx) => (
                         <li key={idx} className="flex items-center gap-2">
                           <Check className="text-primary w-4 h-4" />
-                          <Link to={item.link} className="hover:text-primary transition-colors">
-                            {item.name}
-                          </Link>
+                          <span>{item}</span>
                         </li>
                       ))}
                     </ul>

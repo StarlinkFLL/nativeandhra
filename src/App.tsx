@@ -24,10 +24,6 @@ import InternationalPermit from "./pages/services/licence/InternationalPermit";
 import SlotBooking from "./pages/services/licence/SlotBooking";
 import Documentation from "./pages/services/licence/Documentation";
 import Verification from "./pages/services/licence/Verification";
-import VehicleRegistration from "./pages/services/registration/VehicleRegistration";
-import OwnershipTransfer from "./pages/services/registration/OwnershipTransfer";
-import RCRenewal from "./pages/services/registration/RCRenewal";
-import NOCServices from "./pages/services/registration/NOCServices";
 
 const queryClient = new QueryClient();
 
@@ -59,10 +55,6 @@ const App = () => (
           <Route path="/services/driving-licence/slot-booking" element={<SlotBooking />} />
           <Route path="/services/driving-licence/documentation" element={<Documentation />} />
           <Route path="/services/driving-licence/verification" element={<Verification />} />
-          <Route path="/services/registration/vehicle" element={<VehicleRegistration />} />
-          <Route path="/services/registration/transfer" element={<OwnershipTransfer />} />
-          <Route path="/services/registration/renewal" element={<RCRenewal />} />
-          <Route path="/services/registration/noc" element={<NOCServices />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
