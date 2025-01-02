@@ -4,8 +4,6 @@ import LoanServices from "@/components/services/categories/LoanServices";
 import InsuranceServices from "@/components/services/categories/InsuranceServices";
 import DocumentServices from "@/components/services/categories/DocumentServices";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 
 const Services = () => {
   return (
